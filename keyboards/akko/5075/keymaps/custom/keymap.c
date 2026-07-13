@@ -17,74 +17,74 @@
 #include QMK_KEYBOARD_H
 // clang-format off
 enum __layers {
-    WIN_B,
-    WIN_W,
-    WIN_FN,
-    MAC_B,
-    MAC_W,
-    MAC_FN
+    L_BASE,
+    L_EMACS,
+    L_FN,
+    L_EXTRA,
+    L_5,
+    L_6
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-    [WIN_B] = LAYOUT( /* Base */
+    [L_BASE] = LAYOUT(
         KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11, KC_F12,   KC_DEL,           KC_MUTE,
         KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,KC_EQL,   KC_BSPC,          KC_HOME,
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC,KC_RBRC,  KC_BSLS,          KC_PGUP,
         KC_CAPS, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,          KC_ENT,           KC_PGDN,
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,                   KC_RSFT, KC_UP,   KC_END,
-        KC_LCTL, KC_LGUI, KC_LALT,                   KC_SPC,                             MO(WIN_W), MO(WIN_FN),KC_RCTL,        KC_LEFT, KC_DOWN, KC_RGHT),
+        KC_LCTL, KC_LGUI, KC_LALT,                   KC_SPC,                             OSL(L_FN), OSL(L_EXTRA),KC_RCTL,        KC_LEFT, KC_DOWN, KC_RGHT),
 
-    [WIN_W] = LAYOUT( /* Base */
+    [L_EMACS] = LAYOUT(
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______,
         _______, _______, KC_UP,   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______,
         _______, KC_LEFT, KC_DOWN, KC_RGHT, _______, _______, _______, _______, _______, _______, _______, _______,          _______,          _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,                   _______, KC_W,    _______,
-        _______, _______, _______,                   _______,                            _______, MO(WIN_FN), _______,       KC_A,    KC_S,    KC_D),
+        _______, _______, _______,                   _______,                            OSL(L_FN), OSL(L_EXTRA), _______,       KC_A,    KC_S,    KC_D),
 
 
 
-    [WIN_FN] = LAYOUT( /* FN */
-        _______, KC_MYCM, KC_MAIL, KC_WSCH, KC_WHOM, KC_MSEL, KC_MPLY, KC_MPRV, KC_MNXT, _______, _______, _______, _______, _______,           RM_NEXT,
+    [L_FN] = LAYOUT( /* media keys on fn keys. german umlaute for us int. layout. */
+        _______, KC_MPRV, KC_MNXT, KC_MRWD, KC_MFFD, KC_MPLY, KC_VOLD, KC_VOLU, KC_MUTE, KC_APP, KC_PSCR, KC_SLCK, KC_PAUS, KC_TRNS,           _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RM_SPDD, RM_SPDU, _______,           _______,
-        _______, _______,TG(WIN_W),_______, _______, _______, _______, _______, KC_INS,  _______, KC_PSCR, _______, _______, RM_NEXT,           _______,
+        _______, _______,TG(L_EMACS),_______, _______, _______, _______, _______, KC_INS,  _______, KC_PSCR, _______, _______, RM_NEXT,           _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, RM_TOGG, _______, _______,          RM_HUEU,           _______,
         _______, _______, _______, KC_CALC, _______, _______, _______, KC_MUTE, KC_VOLD, KC_VOLU, _______,                   _______,  RM_VALU, _______,
-        _______, GU_TOGG, _______,                   _______,                            _______, _______, _______,          RM_SATD,  RM_VALD, RM_SATU),
+        _______, GU_TOGG, _______,                   _______,                            TG(L_EMACS), _______, _______,          RM_SATD,  RM_VALD, RM_SATU),
 
-    [MAC_B] = LAYOUT( /* Base */
+    [L_EXTRA] = LAYOUT( /* extra shortcut keys: f13-24 and numblock keys */
         KC_ESC,  KC_BRID, KC_BRIU, KC_MCTL, KC_LPAD, KC_F5,   KC_F6,   KC_MPRV, KC_MPLY, KC_MNXT, KC_MUTE, KC_VOLD,KC_VOLU,  KC_DEL,           KC_MUTE,
         KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,KC_EQL,   KC_BSPC,          KC_HOME,
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC,KC_RBRC,  KC_BSLS,          KC_PGUP,
         KC_CAPS, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,          KC_ENT,           KC_PGDN,
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,                   KC_RSFT, KC_UP,   KC_END,
-        KC_LCTL, KC_LALT, KC_LGUI,                   KC_SPC,                             KC_RGUI, MO(MAC_FN),KC_RCTL,        KC_LEFT, KC_DOWN, KC_RGHT),
+        KC_LCTL, KC_LALT, KC_LGUI,                   KC_SPC,                             KC_RGUI, MO(L_6),KC_RCTL,        KC_LEFT, KC_DOWN, KC_RGHT),
 
-    [MAC_W] = LAYOUT( /* Base */
+    [L_5] = LAYOUT( /* unused */
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______,
         _______, _______, KC_UP,   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______,
         _______, KC_LEFT, KC_DOWN, KC_RGHT, _______, _______, _______, _______, _______, _______, _______, _______,          _______,          _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,                   _______, KC_W,    _______,
-        _______, _______, _______,                   _______,                            _______, MO(MAC_FN), _______,       KC_A,    KC_S,    KC_D),
+        _______, _______, _______,                   _______,                            _______, MO(L_6), _______,       KC_A,    KC_S,    KC_D),
 
-    [MAC_FN] = LAYOUT( /* FN */
+    [L_6] = LAYOUT( /* unused */
         _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  _______,             RM_NEXT,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RM_SPDD, RM_SPDU, _______,           _______,
-        _______, _______,TG(MAC_W),_______, _______, _______, _______, _______, KC_INS,  _______, KC_PSCR,_______, _______,  RM_NEXT,           _______,
+        _______, _______,TG(L_5),_______, _______, _______, _______, _______, KC_INS,  _______, KC_PSCR,_______, _______,  RM_NEXT,           _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, RM_TOGG, _______, _______,          RM_HUEU,           _______,
         _______, _______, _______, KC_CALC, _______, _______, _______, KC_MUTE, KC_VOLD, KC_VOLU, _______,                   _______,  RM_VALU, _______,
         _______, _______, _______,                   _______,                            _______, _______, _______,          RM_SATD,  RM_VALD, RM_SATU),
 };
 #if defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
-    [WIN_B] = { ENCODER_CCW_CW(KC_VOLU, KC_VOLD) },
-    [WIN_W] = { ENCODER_CCW_CW(KC_VOLU, KC_VOLD) },
-    [WIN_FN] = { ENCODER_CCW_CW(RM_VALU, RM_VALD) },
-    [MAC_B] = { ENCODER_CCW_CW(KC_VOLU, KC_VOLD) },
-    [MAC_W] = { ENCODER_CCW_CW(KC_VOLU, KC_VOLD) },
-    [MAC_FN] = { ENCODER_CCW_CW(RM_VALU, RM_VALD) }
+    [L_BASE] = { ENCODER_CCW_CW(KC_VOLU, KC_VOLD) },
+    [L_EMACS] = { ENCODER_CCW_CW(KC_VOLU, KC_VOLD) },
+    [L_FN] = { ENCODER_CCW_CW(RM_VALU, RM_VALD) },
+    [L_EXTRA] = { ENCODER_CCW_CW(KC_VOLU, KC_VOLD) },
+    [L_5] = { ENCODER_CCW_CW(KC_VOLU, KC_VOLD) },
+    [L_6] = { ENCODER_CCW_CW(RM_VALU, RM_VALD) }
 };
 #endif
 
@@ -149,20 +149,20 @@ void set_decor_color_hsv(uint8_t hue, uint8_t saturation, uint8_t brightness) {
 
 bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
     switch (get_highest_layer(layer_state)) {
-        case WIN_B:
+        case L_BASE:
             rgb_matrix_sethsv_noeeprom (0, 0, 80);
             set_decor_color_hsv(148, 180, 70);
             break;
-        case WIN_W:
+        case L_EMACS:
             rgb_matrix_sethsv_noeeprom (0, 0, 80);
             set_home_row_mod_color_hsv(148, 225, 135);
             break;
-        case WIN_FN:
+        case L_FN:
             rgb_matrix_sethsv_noeeprom(0,  255, 255);
             break;
-        case MAC_W:
+        case L_5:
             rgb_matrix_sethsv_noeeprom (60,  255, 255);
-        case MAC_FN:
+        case L_6:
             rgb_matrix_sethsv_noeeprom (180,  255, 255);
             break;
     }
