@@ -151,11 +151,11 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
     switch (get_highest_layer(layer_state)) {
         case WIN_B:
             rgb_matrix_sethsv_noeeprom (0, 0, 80);
-            set_decor_color_hsv(144, 180, 70);
+            set_decor_color_hsv(148, 180, 70);
             break;
         case WIN_W:
             rgb_matrix_sethsv_noeeprom (0, 0, 80);
-            set_home_row_mod_color_hsv(144, 210, 80);
+            set_home_row_mod_color_hsv(148, 225, 135);
             break;
         case WIN_FN:
             rgb_matrix_sethsv_noeeprom(0,  255, 255);
