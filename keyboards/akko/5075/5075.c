@@ -176,47 +176,28 @@ void housekeeping_task_kb(void) {
     }
 }
 
-bool dip_switch_update_kb(uint8_t index, bool active) {
-    if (!dip_switch_update_user(index, active)) {
-        return false;
-    }
-    switch (index) {
-        case 0:
-            if (active) {
-                set_single_default_layer(MAC_B);
-            } else {
-                set_single_default_layer(WIN_B);
-            }
-        default:
-            break;
-    }
-    return true;
+void keyboard_post_init_user(void) {
+    rgblight_mode(RGB_MATRIX_SOLID_COLOR);
+    set_single_default_layer(WIN_B);
+    layer_move(WIN_B);
 }
 
-bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
-    if (!process_record_user(keycode, record)) {
-        return false;
+layer_state_t layer_state_set_user(layer_state_t state) {
+    switch (get_highest_layer(state)) {
+    case WIN_B:
+        rgblight_sethsv (120,  255, 255);
+        break;
+    case WIN_W:
+        rgblight_sethsv (300,  255, 255);
+        break;
+    case WIN_FN:
+        rgblight_sethsv (0,  255, 255);
+        break;
+    case MAC_W:
+        rgblight_sethsv (60,  255, 255);
+    case MAC_FN:
+        rgblight_sethsv (180,  255, 255);
+        break;
     }
-    switch (keycode) {
-#ifndef DISABLE_CA5075_KEYCODES
-        case QK_RGB_MATRIX_TOGGLE:
-            if (record->event.pressed) {
-                switch (rgb_matrix_get_flags()) {
-                    case LED_FLAG_ALL: {
-                        rgb_matrix_set_flags(LED_FLAG_NONE);
-                    } break;
-                    default: {
-                        rgb_matrix_set_flags(LED_FLAG_ALL);
-                    } break;
-                }
-            }
-            if (!rgb_matrix_is_enabled()) {
-                rgb_matrix_set_flags(LED_FLAG_ALL);
-                rgb_matrix_enable();
-            }
-            return false;
-#endif//DISABLE_CA5075_KEYCODES
-        default:
-            return true;
-    }
+  return state;
 }
