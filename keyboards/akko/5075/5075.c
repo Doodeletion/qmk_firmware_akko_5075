@@ -182,22 +182,43 @@ void keyboard_post_init_user(void) {
     layer_move(WIN_B);
 }
 
-layer_state_t layer_state_set_user(layer_state_t state) {
-    switch (get_highest_layer(state)) {
-    case WIN_B:
-        rgblight_sethsv (120,  255, 255);
-        break;
-    case WIN_W:
-        rgblight_sethsv (300,  255, 255);
-        break;
-    case WIN_FN:
-        rgblight_sethsv (0,  255, 255);
-        break;
-    case MAC_W:
-        rgblight_sethsv (60,  255, 255);
-    case MAC_FN:
-        rgblight_sethsv (180,  255, 255);
-        break;
+void set_home_row_mod_color_rgb(uint8_t red, uint8_t green, uint8_t blue) {
+    // a - f
+    rgb_matrix_set_color(45 , red, green, blue);
+    rgb_matrix_set_color(46 , red, green, blue);
+    rgb_matrix_set_color(47 , red, green, blue);
+    rgb_matrix_set_color(48 , red, green, blue);
+
+    // j - ;
+    rgb_matrix_set_color(51 , red, green, blue);
+    rgb_matrix_set_color(52 , red, green, blue);
+    rgb_matrix_set_color(53 , red, green, blue);
+    rgb_matrix_set_color(54 , red, green, blue);
+}
+
+void set_home_row_mod_color_hsv(uint8_t hue, uint8_t saturation, uint8_t brightness) {
+    hsv_t hsv = {hue, saturation, brightness};
+    rgb_t rgb = hsv_to_rgb(hsv);
+    set_home_row_mod_color_rgb(rgb.r, rgb.g, rgb.b);
+}
+
+bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
+    switch (get_highest_layer(layer_state)) {
+        case WIN_B:
+            rgb_matrix_sethsv_noeeprom (0, 0, 90);
+            break;
+        case WIN_W:
+            rgb_matrix_sethsv_noeeprom (0, 0, 90);
+            set_home_row_mod_color_hsv(120, 202, 90);
+            break;
+        case WIN_FN:
+            rgb_matrix_sethsv_noeeprom(0,  255, 255);
+            break;
+        case MAC_W:
+            rgb_matrix_sethsv_noeeprom (60,  255, 255);
+        case MAC_FN:
+            rgb_matrix_sethsv_noeeprom (180,  255, 255);
+            break;
     }
-  return state;
+    return true;
 }
