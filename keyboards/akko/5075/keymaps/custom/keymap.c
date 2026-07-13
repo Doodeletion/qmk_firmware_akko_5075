@@ -1,0 +1,170 @@
+/* Copyright (C) 2023 jonylee@hfd
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#include QMK_KEYBOARD_H
+// clang-format off
+enum __layers {
+    WIN_B,
+    WIN_W,
+    WIN_FN,
+    MAC_B,
+    MAC_W,
+    MAC_FN
+};
+
+const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+
+    [WIN_B] = LAYOUT( /* Base */
+        KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11, KC_F12,   KC_DEL,           KC_MUTE,
+        KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,KC_EQL,   KC_BSPC,          KC_HOME,
+        KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC,KC_RBRC,  KC_BSLS,          KC_PGUP,
+        KC_CAPS, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,          KC_ENT,           KC_PGDN,
+        KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,                   KC_RSFT, KC_UP,   KC_END,
+        KC_LCTL, KC_LGUI, KC_LALT,                   KC_SPC,                             MO(WIN_W), MO(WIN_FN),KC_RCTL,        KC_LEFT, KC_DOWN, KC_RGHT),
+
+    [WIN_W] = LAYOUT( /* Base */
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______,
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______,
+        _______, _______, KC_UP,   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______,
+        _______, KC_LEFT, KC_DOWN, KC_RGHT, _______, _______, _______, _______, _______, _______, _______, _______,          _______,          _______,
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,                   _______, KC_W,    _______,
+        _______, _______, _______,                   _______,                            _______, MO(WIN_FN), _______,       KC_A,    KC_S,    KC_D),
+
+
+
+    [WIN_FN] = LAYOUT( /* FN */
+        _______, KC_MYCM, KC_MAIL, KC_WSCH, KC_WHOM, KC_MSEL, KC_MPLY, KC_MPRV, KC_MNXT, _______, _______, _______, _______, _______,           RM_NEXT,
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RM_SPDD, RM_SPDU, _______,           _______,
+        _______, _______,TG(WIN_W),_______, _______, _______, _______, _______, KC_INS,  _______, KC_PSCR, _______, _______, RM_NEXT,           _______,
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, RM_TOGG, _______, _______,          RM_HUEU,           _______,
+        _______, _______, _______, KC_CALC, _______, _______, _______, KC_MUTE, KC_VOLD, KC_VOLU, _______,                   _______,  RM_VALU, _______,
+        _______, GU_TOGG, _______,                   _______,                            _______, _______, _______,          RM_SATD,  RM_VALD, RM_SATU),
+
+    [MAC_B] = LAYOUT( /* Base */
+        KC_ESC,  KC_BRID, KC_BRIU, KC_MCTL, KC_LPAD, KC_F5,   KC_F6,   KC_MPRV, KC_MPLY, KC_MNXT, KC_MUTE, KC_VOLD,KC_VOLU,  KC_DEL,           KC_MUTE,
+        KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,KC_EQL,   KC_BSPC,          KC_HOME,
+        KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC,KC_RBRC,  KC_BSLS,          KC_PGUP,
+        KC_CAPS, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,          KC_ENT,           KC_PGDN,
+        KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,                   KC_RSFT, KC_UP,   KC_END,
+        KC_LCTL, KC_LALT, KC_LGUI,                   KC_SPC,                             KC_RGUI, MO(MAC_FN),KC_RCTL,        KC_LEFT, KC_DOWN, KC_RGHT),
+
+    [MAC_W] = LAYOUT( /* Base */
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______,
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______,
+        _______, _______, KC_UP,   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______,
+        _______, KC_LEFT, KC_DOWN, KC_RGHT, _______, _______, _______, _______, _______, _______, _______, _______,          _______,          _______,
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,                   _______, KC_W,    _______,
+        _______, _______, _______,                   _______,                            _______, MO(MAC_FN), _______,       KC_A,    KC_S,    KC_D),
+
+    [MAC_FN] = LAYOUT( /* FN */
+        _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  _______,             RM_NEXT,
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RM_SPDD, RM_SPDU, _______,           _______,
+        _______, _______,TG(MAC_W),_______, _______, _______, _______, _______, KC_INS,  _______, KC_PSCR,_______, _______,  RM_NEXT,           _______,
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, RM_TOGG, _______, _______,          RM_HUEU,           _______,
+        _______, _______, _______, KC_CALC, _______, _______, _______, KC_MUTE, KC_VOLD, KC_VOLU, _______,                   _______,  RM_VALU, _______,
+        _______, _______, _______,                   _______,                            _______, _______, _______,          RM_SATD,  RM_VALD, RM_SATU),
+};
+#if defined(ENCODER_MAP_ENABLE)
+const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
+    [WIN_B] = { ENCODER_CCW_CW(KC_VOLU, KC_VOLD) },
+    [WIN_W] = { ENCODER_CCW_CW(KC_VOLU, KC_VOLD) },
+    [WIN_FN] = { ENCODER_CCW_CW(RM_VALU, RM_VALD) },
+    [MAC_B] = { ENCODER_CCW_CW(KC_VOLU, KC_VOLD) },
+    [MAC_W] = { ENCODER_CCW_CW(KC_VOLU, KC_VOLD) },
+    [MAC_FN] = { ENCODER_CCW_CW(RM_VALU, RM_VALD) }
+};
+#endif
+
+
+void set_home_row_mod_color_rgb(uint8_t red, uint8_t green, uint8_t blue) {
+    // a - f
+    rgb_matrix_set_color(45 , red, green, blue);
+    rgb_matrix_set_color(46 , red, green, blue);
+    rgb_matrix_set_color(47 , red, green, blue);
+    rgb_matrix_set_color(48 , red, green, blue);
+
+    // // j - ;
+    rgb_matrix_set_color(51 , red, green, blue);
+    rgb_matrix_set_color(52 , red, green, blue);
+    rgb_matrix_set_color(53 , red, green, blue);
+    rgb_matrix_set_color(54 , red, green, blue);
+}
+
+void set_decor_color_rgb(uint8_t red, uint8_t green, uint8_t blue) {
+    // decor
+    for (int i = 0; i < 13; i++) {
+        rgb_matrix_set_color(i , red, green, blue);
+    }
+
+    rgb_matrix_set_color(14 , red, green, blue);
+
+    for (int i = 18; i < 29; i++) {
+        rgb_matrix_set_color(i , red, green, blue);
+    }
+
+    for (int i = 35; i < 42; i++) {
+        rgb_matrix_set_color(i , red, green, blue);
+    }
+
+    rgb_matrix_set_color(43 , red, green, blue);
+
+    for (int i = 47; i < 57; i++) {
+        rgb_matrix_set_color(i , red, green, blue);
+    }
+
+    rgb_matrix_set_color(58 , red, green, blue);
+
+    for (int i = 63; i < 69; i++) {
+        rgb_matrix_set_color(i , red, green, blue);
+    }
+
+    rgb_matrix_set_color(72 , red, green, blue);
+    rgb_matrix_set_color(73 , red, green, blue);
+}
+
+void set_home_row_mod_color_hsv(uint8_t hue, uint8_t saturation, uint8_t brightness) {
+    hsv_t hsv = {hue, saturation, brightness};
+    rgb_t rgb = hsv_to_rgb(hsv);
+    set_home_row_mod_color_rgb(rgb.r, rgb.g, rgb.b);
+}
+
+void set_decor_color_hsv(uint8_t hue, uint8_t saturation, uint8_t brightness) {
+    hsv_t hsv = {hue, saturation, brightness};
+    rgb_t rgb = hsv_to_rgb(hsv);
+    set_decor_color_rgb(rgb.r, rgb.g, rgb.b);
+}
+
+bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
+    switch (get_highest_layer(layer_state)) {
+        case WIN_B:
+            rgb_matrix_sethsv_noeeprom (0, 0, 80);
+            set_decor_color_hsv(144, 180, 70);
+            break;
+        case WIN_W:
+            rgb_matrix_sethsv_noeeprom (0, 0, 80);
+            set_home_row_mod_color_hsv(144, 210, 80);
+            break;
+        case WIN_FN:
+            rgb_matrix_sethsv_noeeprom(0,  255, 255);
+            break;
+        case MAC_W:
+            rgb_matrix_sethsv_noeeprom (60,  255, 255);
+        case MAC_FN:
+            rgb_matrix_sethsv_noeeprom (180,  255, 255);
+            break;
+    }
+    return true;
+}
