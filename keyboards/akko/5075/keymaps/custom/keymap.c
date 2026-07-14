@@ -25,6 +25,15 @@ enum __layers {
     L_6
 };
 
+
+enum custom_keycodes {
+    M_EURO = SAFE_RANGE,
+    M_SHARP_S,
+    M_UE,
+    M_OE,
+    M_AE,
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [L_BASE] = LAYOUT(
@@ -37,16 +46,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [L_EMACS] = LAYOUT(
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______,
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______,
-        _______, _______, KC_UP,   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______,
-        _______, KC_LEFT, KC_DOWN, KC_RGHT, _______, _______, _______, _______, _______, _______, _______, _______,          _______,          _______,
+        _______, _______, _______, _______, M_EURO,  _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______,
+        _______, _______, _______, _______, _______, _______, _______, _______, M_UE,    _______, M_OE,    _______, _______, _______,          _______,
+        M_AE,    M_SHARP_S, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______,          _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,                   _______, KC_W,    _______,
-        _______, _______, _______,                   _______,                            OSL(L_FN), OSL(L_EXTRA), _______,       KC_A,    KC_S,    KC_D),
+        _______, _______, _______,                   _______,                           OSL(L_FN),OSL(L_EXTRA), _______,       KC_A,    KC_S,    KC_D),
 
 
 
     [L_FN] = LAYOUT( /* media keys on fn keys. german umlaute for us int. layout. */
-        _______, KC_MPRV, KC_MNXT, KC_MRWD, KC_MFFD, KC_MPLY, KC_VOLD, KC_VOLU, KC_MUTE, KC_APP, KC_PSCR, KC_SLCK, KC_PAUS, KC_TRNS,           _______,
+        _______, KC_MPRV, KC_MNXT, KC_MRWD, KC_MFFD, KC_MPLY, KC_VOLD, KC_VOLU, KC_MUTE, KC_APP, KC_PSCR, KC_SCRL, KC_PAUS, KC_TRNS,           _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RM_SPDD, RM_SPDU, _______,           _______,
         _______, _______,TG(L_EMACS),_______, _______, _______, _______, _______, KC_INS,  _______, KC_PSCR, _______, _______, RM_NEXT,           _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, RM_TOGG, _______, _______,          RM_HUEU,           _______,
@@ -88,6 +97,28 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 };
 #endif
 
+// implements macros
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    // skip if FN layer is not active
+    if (!layer_state_is(L_FN)) {
+        return true;
+    }
+
+    switch (keycode) {
+    case M_EURO:
+        if (record->event.pressed) {
+            // key pressed
+            register_code(KC_RALT);
+            register_code(KC_5);
+        } else {
+            // key released
+            unregister_code(KC_5);
+            unregister_code(KC_RALT);
+        }
+        break;
+    }
+    return true;
+};
 
 void set_home_row_mod_color_rgb(uint8_t red, uint8_t green, uint8_t blue) {
     // a - f
