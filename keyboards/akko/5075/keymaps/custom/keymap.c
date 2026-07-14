@@ -37,38 +37,36 @@ enum custom_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [L_BASE] = LAYOUT(
-        KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11, KC_F12,   KC_DEL,           KC_MUTE,
-        KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,KC_EQL,   KC_BSPC,          KC_HOME,
-        KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC,KC_RBRC,  KC_BSLS,          KC_PGUP,
-        KC_CAPS, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,          KC_ENT,           KC_PGDN,
-        KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,                   KC_RSFT, KC_UP,   KC_END,
-        KC_LCTL, KC_LGUI, KC_LALT,                   KC_SPC,                             OSL(L_FN), OSL(L_EXTRA),KC_RCTL,        KC_LEFT, KC_DOWN, KC_RGHT),
+        KC_ESC,              KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,     KC_F10,       KC_F11, KC_F12,  KC_DEL,           KC_MPLY,
+        KC_GRV,              KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,      KC_0,         KC_MINS,KC_EQL,  KC_BSPC,          KC_HOME,
+        LT(L_EXTRA, KC_TAB), KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,      KC_P,         KC_LBRC,KC_RBRC, KC_BSLS,          KC_PGUP,
+        OSL(L_FN),           KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,      KC_SCLN,      KC_QUOT,         KC_ENT,           KC_PGDN,
+        KC_LSFT,             KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,    KC_SLSH,                       KC_RSFT, KC_UP,   KC_END,
+        KC_LCTL,             KC_LGUI, KC_LALT,                   KC_SPC,                             OSL(L_FN), OSL(L_EXTRA), KC_RCTL,         KC_LEFT, KC_DOWN, KC_RGHT),
 
     [L_EMACS] = LAYOUT(
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______,
-        _______, _______, _______, _______, M_EURO,  _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______,
-        _______, _______, _______, _______, _______, _______, _______, _______, M_UE,    _______, M_OE,    _______, _______, _______,          _______,
-        M_AE,    M_SHARP_S, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______,          _______,
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,                   _______, KC_W,    _______,
-        _______, _______, _______,                   _______,                           OSL(L_FN),OSL(L_EXTRA), _______,       KC_A,    KC_S,    KC_D),
-
-
+        _______, _______, _______,   _______, _______, _______, _______, _______, _______,  _______,   _______, _______, _______, _______,          _______,
+        _______, _______, _______,   _______, _______,  _______, _______, _______, _______, _______,   _______, _______, _______, _______,          _______,
+        _______, _______, _______,   _______, _______, _______, _______, _______, _______,  _______,   _______, _______, _______, _______,          _______,
+        _______, _______, _______,   _______, _______, _______, _______, _______, _______,  _______,   _______, _______,          _______,          _______,
+        _______, _______, _______,   _______, _______, _______, _______, _______, _______,  _______,   _______,                   _______, _______, _______,
+        _______, _______, _______,                     _______,                             _______,   _______, _______,          _______, _______, _______),
 
     [L_FN] = LAYOUT( /* media keys on fn keys. german umlaute for us int. layout. */
-        _______, KC_MPRV, KC_MNXT, KC_MRWD, KC_MFFD, KC_MPLY, KC_VOLD, KC_VOLU, KC_MUTE, KC_APP, KC_PSCR, KC_SCRL, KC_PAUS, KC_TRNS,           _______,
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RM_SPDD, RM_SPDU, _______,           _______,
-        _______, _______,TG(L_EMACS),_______, _______, _______, _______, _______, KC_INS,  _______, KC_PSCR, _______, _______, RM_NEXT,           _______,
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, RM_TOGG, _______, _______,          RM_HUEU,           _______,
-        _______, _______, _______, KC_CALC, _______, _______, _______, KC_MUTE, KC_VOLD, KC_VOLU, _______,                   _______,  RM_VALU, _______,
-        _______, GU_TOGG, _______,                   _______,                            TG(L_EMACS), _______, _______,          RM_SATD,  RM_VALD, RM_SATU),
+        _______, KC_MPRV, KC_MNXT,   KC_MRWD, KC_MFFD, KC_MPLY, KC_VOLD, KC_VOLU, KC_MUTE, KC_APP,      KC_PSCR, KC_LSCR, KC_PAUS, _______,          _______,
+        _______, _______, _______,   _______, M_EURO,  _______, _______, _______, _______, _______,     _______, _______, _______, _______,          _______,
+        _______, _______, _______,   _______, _______, _______, _______, M_UE,    _______,    M_OE,     _______,    _______, _______, _______,          _______,
+        _______, M_AE,    M_SHARP_S, _______, _______, _______, _______, _______, _______, _______,     _______, _______,          _______,          _______,
+        _______, _______, _______,   _______, _______, _______, _______, _______, _______, _______,     _______,                   _______, KC_W,    _______,
+        _______, _______, _______,                     _______,                            TG(L_EMACS), OSL(L_EXTRA), _______,       KC_A,    KC_S,    KC_D),
 
     [L_EXTRA] = LAYOUT( /* extra shortcut keys: f13-24 and numblock keys */
-        KC_ESC,  KC_BRID, KC_BRIU, KC_MCTL, KC_LPAD, KC_F5,   KC_F6,   KC_MPRV, KC_MPLY, KC_MNXT, KC_MUTE, KC_VOLD,KC_VOLU,  KC_DEL,           KC_MUTE,
-        KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,KC_EQL,   KC_BSPC,          KC_HOME,
-        KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC,KC_RBRC,  KC_BSLS,          KC_PGUP,
-        KC_CAPS, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,          KC_ENT,           KC_PGDN,
-        KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,                   KC_RSFT, KC_UP,   KC_END,
-        KC_LCTL, KC_LALT, KC_LGUI,                   KC_SPC,                             KC_RGUI, MO(L_6),KC_RCTL,        KC_LEFT, KC_DOWN, KC_RGHT),
+        _______, KC_F13,  KC_F14,  KC_F15,  KC_F16,  KC_F17,  KC_F18,  KC_F19,  KC_F20,  KC_F21,      KC_F22,  KC_F23,  KC_F24,  KC_PSLS,           _______,
+        KC_NUM,  KC_P1,   KC_P2,   KC_P3,   KC_P4,   KC_P5,   KC_P6,   KC_P7,   KC_P8,   KC_P9,       KC_P0,   KC_PAST, KC_PMNS, KC_PENT,           _______,
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,     _______, _______, _______, _______,           _______,
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,     _______, _______,          _______,           _______,
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,     _______,                   _______,  _______, _______,
+        _______, _______, _______,                   _______,                            TG(L_EMACS), _______, _______,          _______,  _______, _______),
 
     [L_5] = LAYOUT( /* unused */
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______,
@@ -79,9 +77,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______, _______,                   _______,                            _______, MO(L_6), _______,       KC_A,    KC_S,    KC_D),
 
     [L_6] = LAYOUT( /* unused */
-        _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  _______,             RM_NEXT,
+        _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  _______,           RM_NEXT,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RM_SPDD, RM_SPDU, _______,           _______,
-        _______, _______,TG(L_5),_______, _______, _______, _______, _______, KC_INS,  _______, KC_PSCR,_______, _______,  RM_NEXT,           _______,
+        _______, _______,TG(L_5),_______, _______, _______, _______, _______, KC_INS,  _______, KC_PSCR,_______, _______,    RM_NEXT,           _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, RM_TOGG, _______, _______,          RM_HUEU,           _______,
         _______, _______, _______, KC_CALC, _______, _______, _______, KC_MUTE, KC_VOLD, KC_VOLU, _______,                   _______,  RM_VALU, _______,
         _______, _______, _______,                   _______,                            _______, _______, _______,          RM_SATD,  RM_VALD, RM_SATU),
@@ -104,15 +102,53 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return true;
     }
 
+    // M_SHARP_S,
+    // M_UE,
+    // M_OE,
+    // M_AE,
+
     switch (keycode) {
     case M_EURO:
         if (record->event.pressed) {
             // key pressed
             register_code(KC_RALT);
-            register_code(KC_5);
+            tap_code(KC_5);
+            unregister_code(KC_RALT);
         } else {
             // key released
-            unregister_code(KC_5);
+            // remember that switch is skipped if not in FN layer
+            // so this might not be triggered if the layer was changed while holding down the macro key
+        }
+        break;
+    case M_AE:
+        if (record->event.pressed) {
+            // key pressed
+            register_code(KC_RALT);
+            tap_code(KC_Q);
+            unregister_code(KC_RALT);
+        }
+        break;
+    case M_SHARP_S:
+        if (record->event.pressed) {
+            // key pressed
+            register_code(KC_RALT);
+            tap_code(KC_S);
+            unregister_code(KC_RALT);
+        }
+        break;
+    case M_UE:
+        if (record->event.pressed) {
+            // key pressed
+            register_code(KC_RALT);
+            tap_code(KC_Y);
+            unregister_code(KC_RALT);
+        }
+        break;
+    case M_OE:
+        if (record->event.pressed) {
+            // key pressed
+            register_code(KC_RALT);
+            tap_code(KC_P);
             unregister_code(KC_RALT);
         }
         break;
@@ -178,6 +214,8 @@ void set_decor_color_hsv(uint8_t hue, uint8_t saturation, uint8_t brightness) {
     set_decor_color_rgb(rgb.r, rgb.g, rgb.b);
 }
 
+// hsv hue 0-360 is mapped to 0-255
+// hue-value/360 * 255
 bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
     switch (get_highest_layer(layer_state)) {
         case L_BASE:
@@ -189,12 +227,10 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
             set_home_row_mod_color_hsv(148, 225, 135);
             break;
         case L_FN:
-            rgb_matrix_sethsv_noeeprom(0,  255, 255);
+            rgb_matrix_sethsv_noeeprom(0,  255, 125);
             break;
-        case L_5:
-            rgb_matrix_sethsv_noeeprom (60,  255, 255);
-        case L_6:
-            rgb_matrix_sethsv_noeeprom (180,  255, 255);
+        case L_EXTRA:
+            rgb_matrix_sethsv_noeeprom(176,  255, 125);
             break;
     }
     return true;
