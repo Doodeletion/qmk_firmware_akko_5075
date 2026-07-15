@@ -102,11 +102,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return true;
     }
 
-    // M_SHARP_S,
-    // M_UE,
-    // M_OE,
-    // M_AE,
-
     switch (keycode) {
     case M_EURO:
         if (record->event.pressed) {
@@ -114,11 +109,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             register_code(KC_RALT);
             tap_code(KC_5);
             unregister_code(KC_RALT);
-        } else {
-            // key released
-            // remember that switch is skipped if not in FN layer
-            // so this might not be triggered if the layer was changed while holding down the macro key
-        }
+        } // else {
+          //     // key released
+          //     // remember that switch is skipped if not in FN layer
+          //     // so this might not be triggered if the layer was changed while holding down the macro key
+          // }
         break;
     case M_AE:
         if (record->event.pressed) {
