@@ -211,7 +211,7 @@ void set_decor_color_hsv(uint8_t hue, uint8_t saturation, uint8_t brightness) {
 
 // hsv hue 0-360 is mapped to 0-255
 // hue-value/360 * 255
-bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
+bool rgb_matrix_indicators_user() {
     switch (get_highest_layer(layer_state)) {
         case L_BASE:
             rgb_matrix_sethsv_noeeprom (0, 0, 80);
