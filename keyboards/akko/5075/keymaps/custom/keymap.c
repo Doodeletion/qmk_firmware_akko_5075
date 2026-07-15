@@ -18,7 +18,7 @@
 // clang-format off
 enum __layers {
     L_BASE,
-    L_EMACS,
+    L_MODS,
     L_FN,
     L_EXTRA,
     L_5,
@@ -44,7 +44,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LSFT,             KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,    KC_SLSH,                       KC_RSFT, KC_UP,   KC_END,
         KC_LCTL,             KC_LGUI, KC_LALT,                   KC_SPC,                             OSL(L_FN), OSL(L_EXTRA), KC_RCTL,         KC_LEFT, KC_DOWN, KC_RGHT),
 
-    [L_EMACS] = LAYOUT(
+    [L_MODS] = LAYOUT(
         _______, _______, _______,   _______, _______, _______, _______, _______, _______,  _______,   _______, _______, _______, _______,          _______,
         _______, _______, _______,   _______, _______,  _______, _______, _______, _______, _______,   _______, _______, _______, _______,          _______,
         _______, _______, _______,   _______, _______, _______, _______, _______, _______,  _______,   _______, _______, _______, _______,          _______,
@@ -58,7 +58,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______, _______,   _______, _______, _______, _______, M_UE,    _______,    M_OE,     _______,    _______, _______, _______,          _______,
         _______, M_AE,    M_SHARP_S, _______, _______, _______, _______, _______, _______, _______,     _______, _______,          _______,          _______,
         _______, _______, _______,   _______, _______, _______, _______, _______, _______, _______,     _______,                   _______, KC_W,    _______,
-        _______, _______, _______,                     _______,                            TG(L_EMACS), OSL(L_EXTRA), _______,       KC_A,    KC_S,    KC_D),
+        _______, _______, _______,                     _______,                            TG(L_MODS), OSL(L_EXTRA), _______,       KC_A,    KC_S,    KC_D),
 
     [L_EXTRA] = LAYOUT( /* extra shortcut keys: f13-24 and numblock keys */
         _______, KC_F13,  KC_F14,  KC_F15,  KC_F16,  KC_F17,  KC_F18,  KC_F19,  KC_F20,  KC_F21,      KC_F22,  KC_F23,  KC_F24,  KC_PSLS,           _______,
@@ -66,7 +66,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,     _______, _______, _______, _______,           _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,     _______, _______,          _______,           _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,     _______,                   _______,  _______, _______,
-        _______, _______, _______,                   _______,                            TG(L_EMACS), _______, _______,          _______,  _______, _______),
+        _______, _______, _______,                   _______,                            TG(L_MODS), _______, _______,          _______,  _______, _______),
 
     [L_5] = LAYOUT( /* unused */
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______,
@@ -87,7 +87,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #if defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
     [L_BASE] = { ENCODER_CCW_CW(KC_VOLU, KC_VOLD) },
-    [L_EMACS] = { ENCODER_CCW_CW(KC_VOLU, KC_VOLD) },
+    [L_MODS] = { ENCODER_CCW_CW(KC_VOLU, KC_VOLD) },
     [L_FN] = { ENCODER_CCW_CW(RM_VALU, RM_VALD) },
     [L_EXTRA] = { ENCODER_CCW_CW(KC_VOLU, KC_VOLD) },
     [L_5] = { ENCODER_CCW_CW(KC_VOLU, KC_VOLD) },
@@ -166,34 +166,43 @@ void set_home_row_mod_color_rgb(uint8_t red, uint8_t green, uint8_t blue) {
 }
 
 void set_decor_color_rgb(uint8_t red, uint8_t green, uint8_t blue) {
-    // decor
-    for (int i = 0; i < 13; i++) {
+    // esc - f12
+    for (int i = 0; i < 14; i++) {
         rgb_matrix_set_color(i , red, green, blue);
     }
 
+    // ~
     rgb_matrix_set_color(14 , red, green, blue);
 
+    // 4 - home
     for (int i = 18; i < 29; i++) {
         rgb_matrix_set_color(i , red, green, blue);
     }
 
-    for (int i = 35; i < 42; i++) {
+    // t - ]
+    for (int i = 34; i < 42; i++) {
         rgb_matrix_set_color(i , red, green, blue);
     }
 
+    // pageup
     rgb_matrix_set_color(43 , red, green, blue);
 
+    // d - '
     for (int i = 47; i < 57; i++) {
         rgb_matrix_set_color(i , red, green, blue);
     }
 
+    // pagedown
     rgb_matrix_set_color(58 , red, green, blue);
 
+    // c - ,
     for (int i = 63; i < 69; i++) {
         rgb_matrix_set_color(i , red, green, blue);
     }
 
+    // up arrow
     rgb_matrix_set_color(72 , red, green, blue);
+    // end
     rgb_matrix_set_color(73 , red, green, blue);
 }
 
@@ -214,10 +223,10 @@ void set_decor_color_hsv(uint8_t hue, uint8_t saturation, uint8_t brightness) {
 bool rgb_matrix_indicators_user() {
     switch (get_highest_layer(layer_state)) {
         case L_BASE:
-            rgb_matrix_sethsv_noeeprom (0, 0, 80);
+            rgb_matrix_sethsv_noeeprom (0, 0, 100);
             set_decor_color_hsv(148, 180, 70);
             break;
-        case L_EMACS:
+        case L_MODS:
             rgb_matrix_sethsv_noeeprom (0, 0, 80);
             set_home_row_mod_color_hsv(148, 225, 135);
             break;
