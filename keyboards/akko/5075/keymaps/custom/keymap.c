@@ -37,28 +37,28 @@ enum custom_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [L_BASE] = LAYOUT(
-        KC_ESC,              KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,     KC_F10,       KC_F11, KC_F12,  KC_DEL,           KC_MPLY,
-        KC_GRV,              KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,      KC_0,         KC_MINS,KC_EQL,  KC_BSPC,          KC_HOME,
-        LT(L_EXTRA, KC_TAB), KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,      KC_P,         KC_LBRC,KC_RBRC, KC_BSLS,          KC_PGUP,
-        OSL(L_FN),           KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,      KC_SCLN,      KC_QUOT,         KC_ENT,           KC_PGDN,
-        KC_LSFT,             KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,    KC_SLSH,                       KC_RSFT, KC_UP,   KC_END,
-        KC_LCTL,             KC_LGUI, KC_LALT,                   KC_SPC,                             OSL(L_FN), OSL(L_EXTRA), KC_RCTL,         KC_LEFT, KC_DOWN, KC_RGHT),
+        KC_ESC,              KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,     KC_F10,       KC_F11,               KC_F12,               KC_DEL,           KC_MPLY,
+        KC_GRV,              KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,      KC_0,         KC_MINS,              KC_EQL,               KC_BSPC,          KC_HOME,
+        LT(L_EXTRA, KC_TAB), KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,      KC_P,         KC_LBRC,              LT(L_EXTRA, KC_RBRC), KC_BSLS,          KC_PGUP,
+        OSL(L_FN),           KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,      KC_SCLN,      LT(L_FN, KC_QUOT),                          KC_ENT,           KC_PGDN,
+        KC_LSFT,             KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,    KC_SLSH,                                                  KC_RSFT, KC_UP,   KC_END,
+        KC_LCTL,             KC_LGUI, KC_LALT,                   KC_SPC,                             OSL(L_FN), OSL(L_EXTRA), KC_RCTL,                                    KC_LEFT, KC_DOWN, KC_RGHT),
 
     [L_MODS] = LAYOUT(
-        _______, _______, _______,   _______, _______, _______, _______, _______, _______,  _______,   _______, _______, _______, _______,          _______,
-        _______, _______, _______,   _______, _______,  _______, _______, _______, _______, _______,   _______, _______, _______, _______,          _______,
-        _______, _______, _______,   _______, _______, _______, _______, _______, _______,  _______,   _______, _______, _______, _______,          _______,
-        _______, _______, _______,   _______, _______, _______, _______, _______, _______,  _______,   _______, _______,          _______,          _______,
-        _______, _______, _______,   _______, _______, _______, _______, _______, _______,  _______,   _______,                   _______, _______, _______,
-        _______, _______, _______,                     _______,                             _______,   _______, _______,          _______, _______, _______),
+        _______, _______,      _______,        _______,      _______,       _______,        _______,           _______,      _______,     _______,        _______,         _______, _______, _______,          _______,
+        _______, _______,      _______,        _______,      _______,       _______,        _______,           _______,      _______,     _______,        _______,         _______, _______, _______,          _______,
+        _______, _______,      _______,        _______,      _______,       _______,        _______,           _______,      _______,     _______,        _______,         _______, _______, _______,          _______,
+        _______, LGUI_T(KC_A), LALT_T(KC_S),   LCTL_T(KC_D), LSFT_T(KC_F), LT(L_FN, KC_G), LT(L_EXTRA, KC_H), RSFT_T(KC_J), RCTL_T(KC_K), LALT_T(KC_L),   RGUI_T(KC_SCLN), _______, _______,                   _______,
+        _______, _______,      _______,        _______,      _______,      _______,        _______,           _______,      _______,      _______,        _______,                           _______, _______, _______,
+        _______, _______,      _______,                                    _______,                                                       _______,        _______,         _______,          _______, _______, _______),
 
     [L_FN] = LAYOUT( /* media keys on fn keys. german umlaute for us int. layout. */
-        _______, KC_MPRV, KC_MNXT,   KC_MRWD, KC_MFFD, KC_MPLY, KC_VOLD, KC_VOLU, KC_MUTE, KC_APP,      KC_PSCR, KC_LSCR, KC_PAUS, _______,          _______,
-        _______, _______, _______,   _______, M_EURO,  _______, _______, _______, _______, _______,     _______, _______, _______, _______,          _______,
-        _______, _______, _______,   _______, _______, _______, _______, M_UE,    _______,    M_OE,     _______,    _______, _______, _______,          _______,
-        _______, M_AE,    M_SHARP_S, _______, _______, _______, _______, _______, _______, _______,     _______, _______,          _______,          _______,
-        _______, _______, _______,   _______, _______, _______, _______, _______, _______, _______,     _______,                   _______, KC_W,    _______,
-        _______, _______, _______,                     _______,                            TG(L_MODS), OSL(L_EXTRA), _______,       KC_A,    KC_S,    KC_D),
+        _______, KC_MPRV, KC_MNXT,   KC_MRWD, KC_MFFD, KC_MPLY, KC_VOLD, KC_VOLU, KC_MUTE, KC_APP,     KC_PSCR, KC_LSCR, KC_PAUS, _______,          _______,
+        _______, _______, _______,   _______, M_EURO,  _______, _______, _______, _______, _______,    _______, _______, _______, _______,          _______,
+        _______, _______, _______,   _______, _______, _______, _______, M_UE,    _______,    M_OE,    _______, _______, _______, _______,          _______,
+        _______, M_AE,    M_SHARP_S, _______, _______, _______, _______, _______, _______, _______,    _______, _______,          _______,          _______,
+        _______, _______, _______,   _______, _______, _______, _______, _______, _______, _______,    _______,                   _______, KC_W,    _______,
+        _______, _______, _______,                     _______,                            TG(L_MODS), OSL(L_EXTRA), _______,     KC_A,    KC_S,    KC_D),
 
     [L_EXTRA] = LAYOUT( /* extra shortcut keys: f13-24 and numblock keys */
         _______, KC_F13,  KC_F14,  KC_F15,  KC_F16,  KC_F17,  KC_F18,  KC_F19,  KC_F20,  KC_F21,      KC_F22,  KC_F23,  KC_F24,  KC_PSLS,           _______,
@@ -66,7 +66,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,     _______, _______, _______, _______,           _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,     _______, _______,          _______,           _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,     _______,                   _______,  _______, _______,
-        _______, _______, _______,                   _______,                            TG(L_MODS), _______, _______,          _______,  _______, _______),
+        _______, _______, _______,                   _______,                            TG(L_MODS),  _______, _______,          _______,  _______, _______),
 
     [L_5] = LAYOUT( /* unused */
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______,
@@ -221,21 +221,14 @@ void set_decor_color_hsv(uint8_t hue, uint8_t saturation, uint8_t brightness) {
 // hsv hue 0-360 is mapped to 0-255
 // hue-value/360 * 255
 bool rgb_matrix_indicators_user() {
-    switch (get_highest_layer(layer_state)) {
-        case L_BASE:
-            rgb_matrix_sethsv_noeeprom (0, 0, 100);
-            set_decor_color_hsv(148, 180, 70);
-            break;
-        case L_MODS:
-            rgb_matrix_sethsv_noeeprom (0, 0, 80);
-            set_home_row_mod_color_hsv(148, 225, 135);
-            break;
-        case L_FN:
-            rgb_matrix_sethsv_noeeprom(0,  255, 125);
-            break;
-        case L_EXTRA:
-            rgb_matrix_sethsv_noeeprom(176,  255, 125);
-            break;
+    if (layer_state_is(L_MODS)) {
+      // L_MODS
+        rgb_matrix_sethsv_noeeprom (0, 0, 80);
+        set_home_row_mod_color_hsv(148, 225, 135);
+    } else {
+        // L_BASE
+        rgb_matrix_sethsv_noeeprom (0, 0, 100);
+        set_decor_color_hsv(148, 180, 70);
     }
     return true;
 }
