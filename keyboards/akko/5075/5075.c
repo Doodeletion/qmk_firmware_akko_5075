@@ -149,7 +149,7 @@ enum __layers {
     L_EMACS,
     L_FN,
     L_EXTRA,
-    L_5,
+    L_NOGUI,
     L_6
 };
 
@@ -171,7 +171,7 @@ void housekeeping_task_kb(void) {
     static uint32_t last_time = 0;
     if (timer_elapsed32(last_time) >= 1) {
         last_time = timer_read32();
-        gpio_write_pin(LED_MAC_OS_PIN, default_layer_state & ((1<<L_EXTRA)|(1<<L_5)));
+        gpio_write_pin(LED_MAC_OS_PIN, default_layer_state & ((1<<L_EXTRA)|(1<<L_NOGUI)));
         gpio_write_pin(LED_WIN_LOCK_PIN, keymap_config.no_gui);
     }
 }
