@@ -44,13 +44,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LSFT,             KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,    KC_SLSH,                                                  KC_RSFT, KC_UP,   KC_END,
         KC_LCTL,             KC_LGUI, KC_LALT,                   KC_SPC,                             OSL(L_FN), OSL(L_EXTRA), KC_RCTL,                                    KC_LEFT, KC_DOWN, KC_RGHT),
 
-    [L_MODS] = LAYOUT(
+    //TODO remove dynamic tapping time keys when done configuring timing (also remove feature switch from rules.mk)
+    [L_MODS] = LAYOUT( /* GACS home row mods */
         _______, _______,      _______,        _______,      _______,       _______,        _______,           _______,      _______,     _______,        _______,         _______, _______, _______,          _______,
         _______, _______,      _______,        _______,      _______,       _______,        _______,           _______,      _______,     _______,        _______,         _______, _______, _______,          _______,
         _______, _______,      _______,        _______,      _______,       _______,        _______,           _______,      _______,     _______,        _______,         _______, _______, _______,          _______,
         _______, LGUI_T(KC_A), LALT_T(KC_S),   LCTL_T(KC_D), LSFT_T(KC_F), LT(L_FN, KC_G), LT(L_EXTRA, KC_H), RSFT_T(KC_J), RCTL_T(KC_K), LALT_T(KC_L),   RGUI_T(KC_SCLN), _______, _______,                   _______,
-        _______, _______,      _______,        _______,      _______,      _______,        _______,           _______,      _______,      _______,        _______,                           _______, _______, _______,
-        _______, _______,      _______,                                    _______,                                                       _______,        _______,         _______,          _______, _______, _______),
+        _______, _______,      _______,        _______,      _______,      _______,        _______,           _______,      _______,      _______,        _______,                           _______, DT_UP, _______,
+        _______, _______,      _______,                                    _______,                                                       _______,        _______,         _______,          _______, DT_DOWN, DT_PRNT),
 
     [L_FN] = LAYOUT( /* media keys on fn keys. german umlaute for us int. layout. */
         _______, KC_MPRV, KC_MNXT,   KC_MRWD, KC_MFFD, KC_MPLY, KC_VOLD, KC_VOLU, KC_MUTE, KC_APP,     KC_PSCR, KC_LSCR, KC_PAUS, _______,          _______,
@@ -84,6 +85,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______, _______, KC_CALC, _______, _______, _______, KC_MUTE, KC_VOLD, KC_VOLU, _______,                   _______,  RM_VALU, _______,
         _______, _______, _______,                   _______,                            _______, _______, _______,          RM_SATD,  RM_VALD, RM_SATU),
 };
+
+//TODO use encoder to skip forward/backward?
 #if defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
     [L_BASE] = { ENCODER_CCW_CW(KC_VOLU, KC_VOLD) },
