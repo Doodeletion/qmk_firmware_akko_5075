@@ -158,18 +158,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 //      RGB
 // #################
 
-void set_home_row_mod_color(uint8_t red, uint8_t green, uint8_t blue) {
+void set_home_row_mod_color(void) {
     // a - f
-    rgb_matrix_set_color(45 , red, green, blue);
-    rgb_matrix_set_color(46 , red, green, blue);
-    rgb_matrix_set_color(47 , red, green, blue);
-    rgb_matrix_set_color(48 , red, green, blue);
+    rgb_matrix_set_color(45, 178, 0, 0);
+    rgb_matrix_set_color(46, 255, 127, 0);
+    rgb_matrix_set_color(47, 229, 191, 0);
+    rgb_matrix_set_color(48, 0, 128, 0);
+    rgb_matrix_set_color(49, 0, 128, 85);
 
     // // j - ;
-    rgb_matrix_set_color(51 , red, green, blue);
-    rgb_matrix_set_color(52 , red, green, blue);
-    rgb_matrix_set_color(53 , red, green, blue);
-    rgb_matrix_set_color(54 , red, green, blue);
+    rgb_matrix_set_color(50, 81, 20, 128);
+    rgb_matrix_set_color(51, 0, 128, 0);
+    rgb_matrix_set_color(52, 229, 191, 0);
+    rgb_matrix_set_color(53, 255, 127, 0);
+    rgb_matrix_set_color(54, 178, 0, 0);
 }
 
 void set_decor_color_rgb(uint8_t red, uint8_t green, uint8_t blue) {
@@ -226,7 +228,7 @@ bool rgb_matrix_indicators_user() {
 
     // accents
     if (layer_state_is(L_MODS)) {
-        set_home_row_mod_color(16,78,135);
+        set_home_row_mod_color();
         return false;
     }
 
