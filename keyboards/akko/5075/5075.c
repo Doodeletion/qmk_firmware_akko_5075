@@ -177,7 +177,9 @@ void housekeeping_task_kb(void) {
 }
 
 void keyboard_post_init_user(void) {
+    debug_enable=true;
     rgblight_mode(RGB_MATRIX_SOLID_COLOR);
     set_single_default_layer(L_BASE);
     layer_move(L_BASE);
+
 }

@@ -2,3 +2,4 @@ ENCODER_MAP_ENABLE = yes
 # custom
 # TODO remove
 DYNAMIC_TAPPING_TERM_ENABLE = yes
+CONSOLE_ENABLE = yes

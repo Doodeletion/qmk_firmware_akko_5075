@@ -14,6 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "print.h"
 #include QMK_KEYBOARD_H
 // clang-format off
 enum __layers {
@@ -154,11 +155,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
 };
 
-//##################
-//      RGB
-// #################
-
-void set_home_row_mod_color(unit8_t red, uint8_t green, uint8_t blue) {
+void set_home_row_mod_color_rgb(uint8_t red, uint8_t green, uint8_t blue) {
+    red =6; green=31; blue=54;
     // a - f
     rgb_matrix_set_color(45 , red, green, blue);
     rgb_matrix_set_color(46 , red, green, blue);
@@ -173,6 +171,7 @@ void set_home_row_mod_color(unit8_t red, uint8_t green, uint8_t blue) {
 }
 
 void set_decor_color_rgb(uint8_t red, uint8_t green, uint8_t blue) {
+    red=4;green=9;blue=14;
     // esc - f12
     for (int i = 0; i < 14; i++) {
         rgb_matrix_set_color(i , red, green, blue);
@@ -213,6 +212,29 @@ void set_decor_color_rgb(uint8_t red, uint8_t green, uint8_t blue) {
     rgb_matrix_set_color(73 , red, green, blue);
 }
 
+
+void set_home_row_mod_color_hsv(uint8_t hue, uint8_t saturation, uint8_t brightness) {
+    hsv_t hsv = {hue, saturation, brightness};
+    rgb_t rgb = hsv_to_rgb(hsv);
+    set_home_row_mod_color_rgb(rgb.r, rgb.g, rgb.b);
+        print("home row");
+        printf("r: %u,", rgb.r);
+        printf("g: %u,", rgb.g);
+        printf("b: %u,", rgb.b);
+            // print(String(char*)rgb.r); print((char*)rgb.g); print((char*)rgb.b);
+}
+
+void set_decor_color_hsv(uint8_t hue, uint8_t saturation, uint8_t brightness) {
+    hsv_t hsv = {hue, saturation, brightness};
+    rgb_t rgb = hsv_to_rgb(hsv);
+    set_decor_color_rgb(rgb.r, rgb.g, rgb.b);
+        print("decor");
+        printf("r: %u,", rgb.r);
+        printf("g: %u,", rgb.g);
+        printf("b: %u,", rgb.b);
+        // print((char*)rgb.r); print((char*)rgb.g); print((char*)rgb.b);
+}
+
 // hsv hue 0-360 is mapped to 0-255
 // hue-value/360 * 255
 bool rgb_matrix_indicators_user() {
@@ -223,17 +245,17 @@ bool rgb_matrix_indicators_user() {
 
     if (layer_state_is(L_MODS)) {
         rgb_matrix_sethsv_noeeprom (0, 0, 80);
-        set_home_row_mod_color(16,78,135);
+        set_home_row_mod_color_hsv(148, 225, 135);
         return false;
     }
 
     if (layer_state_is(L_BASE)) {
         rgb_matrix_sethsv_noeeprom (0, 0, 100);
-        set_decor_color_rgb(21, 46, 70);
+        set_decor_color_hsv(148, 180, 70);
         return false;
     }
 
     // red to signal error if no layer matched
-    rgb_matrix_sethsv_noeeprom (0, 255, 135);
+    rgb_matrix_sethsv_noeeprom (0, 100, 135);
     return false;
 }
