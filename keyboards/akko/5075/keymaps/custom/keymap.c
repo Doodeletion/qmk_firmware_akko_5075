@@ -217,22 +217,20 @@ void set_home_row_mod_color_hsv(uint8_t hue, uint8_t saturation, uint8_t brightn
     hsv_t hsv = {hue, saturation, brightness};
     rgb_t rgb = hsv_to_rgb(hsv);
     set_home_row_mod_color_rgb(rgb.r, rgb.g, rgb.b);
-        print("home row");
+        print("home row: ");
         printf("r: %u,", rgb.r);
         printf("g: %u,", rgb.g);
         printf("b: %u,", rgb.b);
-            // print(String(char*)rgb.r); print((char*)rgb.g); print((char*)rgb.b);
 }
 
 void set_decor_color_hsv(uint8_t hue, uint8_t saturation, uint8_t brightness) {
     hsv_t hsv = {hue, saturation, brightness};
     rgb_t rgb = hsv_to_rgb(hsv);
     set_decor_color_rgb(rgb.r, rgb.g, rgb.b);
-        print("decor");
+        print("decor: ");
         printf("r: %u,", rgb.r);
         printf("g: %u,", rgb.g);
         printf("b: %u,", rgb.b);
-        // print((char*)rgb.r); print((char*)rgb.g); print((char*)rgb.b);
 }
 
 // hsv hue 0-360 is mapped to 0-255
