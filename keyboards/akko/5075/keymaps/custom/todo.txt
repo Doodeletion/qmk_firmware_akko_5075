@@ -1,0 +1,4 @@
+- bind a key to move the mouse in the middle of the screen (no more mouse searching) https://docs.qmk.fm/features/digitizer
+- activate word caps (used instead of caps lock)
+- color alt fn ctrl blue in base layer
+- color code modifiers in home row mod layer
