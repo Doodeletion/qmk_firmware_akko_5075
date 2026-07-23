@@ -158,7 +158,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 //      RGB
 // #################
 
-void set_home_row_mod_color(unit8_t red, uint8_t green, uint8_t blue) {
+void set_home_row_mod_color(uint8_t red, uint8_t green, uint8_t blue) {
     // a - f
     rgb_matrix_set_color(45 , red, green, blue);
     rgb_matrix_set_color(46 , red, green, blue);
