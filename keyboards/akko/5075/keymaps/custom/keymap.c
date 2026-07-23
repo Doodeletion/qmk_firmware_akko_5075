@@ -216,24 +216,26 @@ void set_decor_color_rgb(uint8_t red, uint8_t green, uint8_t blue) {
 // hsv hue 0-360 is mapped to 0-255
 // hue-value/360 * 255
 bool rgb_matrix_indicators_user() {
+    // general key color
     if(layer_state_is(L_NOGUI)) {
         rgb_matrix_sethsv_noeeprom (128, 230, 135);
         return false;
+    } else {
+        rgb_matrix_sethsv_noeeprom (0, 0, 100);
     }
 
+    // accents
     if (layer_state_is(L_MODS)) {
-        rgb_matrix_sethsv_noeeprom (0, 0, 80);
         set_home_row_mod_color(16,78,135);
         return false;
     }
 
     if (layer_state_is(L_BASE)) {
-        rgb_matrix_sethsv_noeeprom (0, 0, 100);
         set_decor_color_rgb(21, 46, 70);
         return false;
     }
 
-    // red to signal error if no layer matched
+    // red to signal error if neither L_MODS nor L_BASE matched
     rgb_matrix_sethsv_noeeprom (0, 255, 135);
     return false;
 }
