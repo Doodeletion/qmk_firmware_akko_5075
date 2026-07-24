@@ -44,7 +44,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LSFT,             KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,    KC_SLSH,                                                  KC_RSFT, KC_UP,   KC_END,
         KC_LCTL,             KC_LGUI, KC_LALT,                   KC_SPC,                             OSL(L_MEDIA), OSL(L_EXTRA), KC_RCTL,                                    KC_LEFT, KC_DOWN, KC_RGHT),
 
-    //TODO remove dynamic tapping time keys when done configuring timing (also remove feature switch from rules.mk)
     [L_MODS] = LAYOUT( /* GACS home row mods */
         _______, _______,      _______,        _______,      _______,       _______,        _______,           _______,      _______,     _______,        _______,         _______, _______, _______,          _______,
         _______, _______,      _______,        _______,      _______,       _______,        _______,           _______,      _______,     _______,        _______,         _______, _______, _______,          _______,
@@ -53,6 +52,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______,      _______,        _______,      _______,      _______,        _______,           _______,      _______,      _______,        _______,                           _______, _______, _______,
         _______, _______,      _______,                                    _______,                                                       _______,        _______,         _______,          _______, _______, _______),
 
+    //TODO remove dynamic t keys when done configuring timing (also remove feature switch from rules.mk)
     [L_MEDIA] = LAYOUT( /* media keys on fn keys. german umlaute for us int. layout. */
         _______, KC_MPRV, KC_MNXT,   KC_MRWD, KC_MFFD, KC_MPLY, KC_VOLD, KC_VOLU, KC_MUTE, KC_APP,     KC_PSCR,         KC_LSCR,      KC_PAUS, _______,          _______,
         _______, _______, _______,   _______, M_EURO,  _______, _______, _______, _______, _______,    _______,         _______,      _______, _______,          _______,
@@ -185,7 +185,7 @@ void set_home_row_mod_color(void) {
     // rshift
     rgb_matrix_set_color(71, 0, 102, 0);
     // ralt
-    rgb_matrix_set_color(78, 255, 45, 0);
+    rgb_matrix_set_color(78, 0, 24, 179);
     // fn
     rgb_matrix_set_color(79, 116, 19, 191);
     // rctrl
@@ -197,10 +197,9 @@ void set_home_row_mod_color(void) {
     rgb_matrix_set_color(44, 0, 24, 179);
 
     // [
-    rgb_matrix_set_color(41, 116, 19, 191);
+    rgb_matrix_set_color(40, 116, 19, 191);
     // '
     rgb_matrix_set_color(55, 0, 24, 179);
-
 }
 
 void set_decor_color_rgb(uint8_t red, uint8_t green, uint8_t blue) {
@@ -248,6 +247,8 @@ void set_decor_color_rgb(uint8_t red, uint8_t green, uint8_t blue) {
         rgb_matrix_set_color(i , red, green, blue);
     }
 }
+
+//TODO invert base coloring. more keys are decor than base. (or iterate keys to only color each once)
 
 // hsv hue 0-360 is mapped to 0-255
 // hue-value/360 * 255
