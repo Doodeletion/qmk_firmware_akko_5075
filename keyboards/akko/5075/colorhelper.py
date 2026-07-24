@@ -13,6 +13,12 @@ import colorsys
 def colorsys_to_qmk(three_value_tuple):
     return (three_value_tuple[0]*255,three_value_tuple[1]*255,three_value_tuple[2]*255)
 
+def colorsys_to_rgb(three_value_tuple):
+    return colorsys_to_qmk(three_value_tuple)
+
+def colorsys_to_hsv(three_value_tuple):
+    return (three_value_tuple[0]*360,three_value_tuple[1]*100,three_value_tuple[2]*100)
+
 def qmk_hsv(h,s,v):
     return (h * 255 / 360, s * 255 / 100, v * 255 / 100)
 
@@ -30,3 +36,6 @@ def qmk_hsv_to_qmk_rgb(h,s,v):
 
 def qmk_rgb_to_qmk_hsv(r,g,b):
     return colorsys_to_qmk(colorsys.rgb_to_hsv(r/255, g/255, b/255))
+
+def qmk_rgb_to_hsv(r,g,b):
+    return colorsys_to_hsv(colorsys.rgb_to_hsv(r/255, g/255, b/255))

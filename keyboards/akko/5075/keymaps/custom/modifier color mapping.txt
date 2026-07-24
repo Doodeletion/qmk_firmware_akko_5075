@@ -1,0 +1,6 @@
+gui     red
+alt     orange
+ctrl    yellow
+shift   green
+L_FN    blue
+L_EXTRA purple

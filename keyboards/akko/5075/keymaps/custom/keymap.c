@@ -159,19 +159,48 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 // #################
 
 void set_home_row_mod_color(void) {
-    // a - f
+    // a - g
     rgb_matrix_set_color(45, 178, 0, 0);
-    rgb_matrix_set_color(46, 255, 127, 0);
-    rgb_matrix_set_color(47, 229, 191, 0);
-    rgb_matrix_set_color(48, 0, 128, 0);
-    rgb_matrix_set_color(49, 0, 128, 85);
+    rgb_matrix_set_color(46, 255, 45, 0);
+    rgb_matrix_set_color(47, 204, 170, 0);
+    rgb_matrix_set_color(48, 0, 102, 0);
+    rgb_matrix_set_color(49, 0, 24, 179);
 
-    // // j - ;
-    rgb_matrix_set_color(50, 81, 20, 128);
-    rgb_matrix_set_color(51, 0, 128, 0);
-    rgb_matrix_set_color(52, 229, 191, 0);
-    rgb_matrix_set_color(53, 255, 127, 0);
+    // h - ;
+    rgb_matrix_set_color(50, 116, 19, 191);
+    rgb_matrix_set_color(51, 0, 102, 0);
+    rgb_matrix_set_color(52, 204, 170, 0);
+    rgb_matrix_set_color(53, 255, 45, 0);
     rgb_matrix_set_color(54, 178, 0, 0);
+
+    // lshift
+    rgb_matrix_set_color(60, 0, 102, 0);
+    // lctrl
+    rgb_matrix_set_color(74, 204, 170, 0);
+    // lgui
+    rgb_matrix_set_color(75, 178, 0, 0);
+    // lalt
+    rgb_matrix_set_color(76, 255, 45, 0);
+
+    // rshift
+    rgb_matrix_set_color(71, 0, 102, 0);
+    // ralt
+    rgb_matrix_set_color(78, 255, 45, 0);
+    // fn
+    rgb_matrix_set_color(79, 116, 19, 191);
+    // rctrl
+    rgb_matrix_set_color(80, 204, 170, 0);
+
+    // tab
+    rgb_matrix_set_color(29, 116, 19, 191);
+    // caps
+    rgb_matrix_set_color(44, 0, 24, 179);
+
+    // [
+    rgb_matrix_set_color(41, 116, 19, 191);
+    // '
+    rgb_matrix_set_color(55, 0, 24, 179);
+
 }
 
 void set_decor_color_rgb(uint8_t red, uint8_t green, uint8_t blue) {
@@ -213,6 +242,11 @@ void set_decor_color_rgb(uint8_t red, uint8_t green, uint8_t blue) {
     rgb_matrix_set_color(72 , red, green, blue);
     // end
     rgb_matrix_set_color(73 , red, green, blue);
+
+    // ralt - rctrl
+    for (int i = 78; i < 81; i++) {
+        rgb_matrix_set_color(i , red, green, blue);
+    }
 }
 
 // hsv hue 0-360 is mapped to 0-255
@@ -233,7 +267,7 @@ bool rgb_matrix_indicators_user() {
     }
 
     if (layer_state_is(L_BASE)) {
-        set_decor_color_rgb(21, 46, 70);
+        set_decor_color_rgb(6, 13, 20);
         return false;
     }
 
