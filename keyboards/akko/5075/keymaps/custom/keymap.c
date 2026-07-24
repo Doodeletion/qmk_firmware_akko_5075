@@ -91,10 +91,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
     [L_BASE] = { ENCODER_CCW_CW(KC_VOLU, KC_VOLD) },
     [L_MODS] = { ENCODER_CCW_CW(KC_VOLU, KC_VOLD) },
-    [L_FN] = { ENCODER_CCW_CW(RM_VALU, RM_VALD) },
+    [L_FN] = { ENCODER_CCW_CW(KC_MFFD, KC_MRWD) },
     [L_EXTRA] = { ENCODER_CCW_CW(KC_VOLU, KC_VOLD) },
     [L_NOGUI] = { ENCODER_CCW_CW(KC_VOLU, KC_VOLD) },
-    [L_6] = { ENCODER_CCW_CW(RM_VALU, RM_VALD) }
+    [L_6] = { ENCODER_CCW_CW(KC_VOLU, KC_VOLD) }
 };
 #endif
 
