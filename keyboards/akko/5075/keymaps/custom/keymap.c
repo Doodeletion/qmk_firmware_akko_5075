@@ -162,21 +162,21 @@ void set_home_row_mod_color(void) {
     // a - g
     rgb_matrix_set_color(45, 178, 0, 0);
     rgb_matrix_set_color(46, 255, 45, 0);
-    rgb_matrix_set_color(47, 204, 170, 0);
+    rgb_matrix_set_color(47, 178, 149, 0);
     rgb_matrix_set_color(48, 0, 102, 0);
     rgb_matrix_set_color(49, 0, 24, 179);
 
     // h - ;
-    rgb_matrix_set_color(50, 116, 19, 191);
+    rgb_matrix_set_color(50, 66, 20, 204);
     rgb_matrix_set_color(51, 0, 102, 0);
-    rgb_matrix_set_color(52, 204, 170, 0);
+    rgb_matrix_set_color(52, 178, 149, 0);
     rgb_matrix_set_color(53, 255, 45, 0);
     rgb_matrix_set_color(54, 178, 0, 0);
 
     // lshift
     rgb_matrix_set_color(60, 0, 102, 0);
     // lctrl
-    rgb_matrix_set_color(74, 204, 170, 0);
+    rgb_matrix_set_color(74, 178, 149, 0);
     // lgui
     rgb_matrix_set_color(75, 178, 0, 0);
     // lalt
@@ -187,17 +187,17 @@ void set_home_row_mod_color(void) {
     // ralt
     rgb_matrix_set_color(78, 0, 24, 179);
     // fn
-    rgb_matrix_set_color(79, 116, 19, 191);
+    rgb_matrix_set_color(79, 66, 20, 204);
     // rctrl
-    rgb_matrix_set_color(80, 204, 170, 0);
+    rgb_matrix_set_color(80, 178, 149, 0);
 
     // tab
-    rgb_matrix_set_color(29, 116, 19, 191);
+    rgb_matrix_set_color(29, 66, 20, 204);
     // caps
     rgb_matrix_set_color(44, 0, 24, 179);
 
     // [
-    rgb_matrix_set_color(40, 116, 19, 191);
+    rgb_matrix_set_color(40, 66, 20, 204);
     // '
     rgb_matrix_set_color(55, 0, 24, 179);
 }
@@ -258,7 +258,7 @@ bool rgb_matrix_indicators_user() {
         rgb_matrix_sethsv_noeeprom (128, 230, 135);
         return false;
     } else {
-        rgb_matrix_sethsv_noeeprom (0, 0, 100);
+        rgb_matrix_sethsv_noeeprom (0, 0, 113);
     }
 
     // accents
