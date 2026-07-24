@@ -2,5 +2,5 @@ gui     red
 alt     orange
 ctrl    yellow
 shift   green
-L_FN    blue
+L_MEDIA    blue
 L_EXTRA purple

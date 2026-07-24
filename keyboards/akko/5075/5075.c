@@ -147,7 +147,7 @@ const snled27351_led_t PROGMEM g_snled27351_leds[SNLED27351_LED_COUNT] = {
 enum __layers {
     L_BASE,
     L_EMACS,
-    L_FN,
+    L_MEDIA,
     L_EXTRA,
     L_NOGUI,
     L_6

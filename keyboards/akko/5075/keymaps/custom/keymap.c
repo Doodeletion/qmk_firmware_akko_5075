@@ -19,7 +19,7 @@
 enum __layers {
     L_BASE,
     L_MODS,
-    L_FN,
+    L_MEDIA,
     L_EXTRA,
     L_NOGUI,
     L_6
@@ -40,20 +40,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_ESC,              KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,     KC_F10,       KC_F11,               KC_F12,               KC_DEL,           KC_MPLY,
         KC_GRV,              KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,      KC_0,         KC_MINS,              KC_EQL,               KC_BSPC,          KC_HOME,
         LT(L_EXTRA, KC_TAB), KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,      KC_P,         KC_LBRC,              LT(L_EXTRA, KC_RBRC), KC_BSLS,          KC_PGUP,
-        OSL(L_FN),           KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,      KC_SCLN,      LT(L_FN, KC_QUOT),                          KC_ENT,           KC_PGDN,
+        OSL(L_MEDIA),           KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,      KC_SCLN,      LT(L_MEDIA, KC_QUOT),                          KC_ENT,           KC_PGDN,
         KC_LSFT,             KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,    KC_SLSH,                                                  KC_RSFT, KC_UP,   KC_END,
-        KC_LCTL,             KC_LGUI, KC_LALT,                   KC_SPC,                             OSL(L_FN), OSL(L_EXTRA), KC_RCTL,                                    KC_LEFT, KC_DOWN, KC_RGHT),
+        KC_LCTL,             KC_LGUI, KC_LALT,                   KC_SPC,                             OSL(L_MEDIA), OSL(L_EXTRA), KC_RCTL,                                    KC_LEFT, KC_DOWN, KC_RGHT),
 
     //TODO remove dynamic tapping time keys when done configuring timing (also remove feature switch from rules.mk)
     [L_MODS] = LAYOUT( /* GACS home row mods */
         _______, _______,      _______,        _______,      _______,       _______,        _______,           _______,      _______,     _______,        _______,         _______, _______, _______,          _______,
         _______, _______,      _______,        _______,      _______,       _______,        _______,           _______,      _______,     _______,        _______,         _______, _______, _______,          _______,
         _______, _______,      _______,        _______,      _______,       _______,        _______,           _______,      _______,     _______,        _______,         _______, _______, _______,          _______,
-        _______, LGUI_T(KC_A), LALT_T(KC_S),   LCTL_T(KC_D), LSFT_T(KC_F), LT(L_FN, KC_G), LT(L_EXTRA, KC_H), RSFT_T(KC_J), RCTL_T(KC_K), LALT_T(KC_L),   RGUI_T(KC_SCLN), _______, _______,                   _______,
+        _______, LGUI_T(KC_A), LALT_T(KC_S),   LCTL_T(KC_D), LSFT_T(KC_F), LT(L_MEDIA, KC_G), LT(L_EXTRA, KC_H), RSFT_T(KC_J), RCTL_T(KC_K), LALT_T(KC_L),   RGUI_T(KC_SCLN), _______, _______,                   _______,
         _______, _______,      _______,        _______,      _______,      _______,        _______,           _______,      _______,      _______,        _______,                           _______, _______, _______,
         _______, _______,      _______,                                    _______,                                                       _______,        _______,         _______,          _______, _______, _______),
 
-    [L_FN] = LAYOUT( /* media keys on fn keys. german umlaute for us int. layout. */
+    [L_MEDIA] = LAYOUT( /* media keys on fn keys. german umlaute for us int. layout. */
         _______, KC_MPRV, KC_MNXT,   KC_MRWD, KC_MFFD, KC_MPLY, KC_VOLD, KC_VOLU, KC_MUTE, KC_APP,     KC_PSCR,         KC_LSCR,      KC_PAUS, _______,          _______,
         _______, _______, _______,   _______, M_EURO,  _______, _______, _______, _______, _______,    _______,         _______,      _______, _______,          _______,
         _______, _______, _______,   _______, _______, _______, _______, M_UE,    _______, M_OE,       _______,         _______,      _______, _______,          _______,
@@ -91,7 +91,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
     [L_BASE] = { ENCODER_CCW_CW(KC_VOLU, KC_VOLD) },
     [L_MODS] = { ENCODER_CCW_CW(KC_VOLU, KC_VOLD) },
-    [L_FN] = { ENCODER_CCW_CW(KC_MFFD, KC_MRWD) },
+    [L_MEDIA] = { ENCODER_CCW_CW(KC_MFFD, KC_MRWD) },
     [L_EXTRA] = { ENCODER_CCW_CW(KC_VOLU, KC_VOLD) },
     [L_NOGUI] = { ENCODER_CCW_CW(KC_VOLU, KC_VOLD) },
     [L_6] = { ENCODER_CCW_CW(KC_VOLU, KC_VOLD) }
@@ -101,7 +101,7 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 // implements macros
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     // skip if FN layer is not active
-    if (!layer_state_is(L_FN)) {
+    if (!layer_state_is(L_MEDIA)) {
         return true;
     }
 
