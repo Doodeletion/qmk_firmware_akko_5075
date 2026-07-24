@@ -154,121 +154,152 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
 };
 
-//##################
-//      RGB
-// #################
+  // ################# //
+ //      RGB          //
+// ################# //
 
-void set_home_row_mod_color(void) {
-    // a - g
-    rgb_matrix_set_color(45, 178, 0, 0);
-    rgb_matrix_set_color(46, 255, 45, 0);
-    rgb_matrix_set_color(47, 178, 149, 0);
-    rgb_matrix_set_color(48, 0, 102, 0);
-    rgb_matrix_set_color(49, 0, 24, 179);
+#define MAX_LED_INDEX 83
 
-    // h - ;
-    rgb_matrix_set_color(50, 66, 20, 204);
-    rgb_matrix_set_color(51, 0, 102, 0);
-    rgb_matrix_set_color(52, 178, 149, 0);
-    rgb_matrix_set_color(53, 255, 45, 0);
-    rgb_matrix_set_color(54, 178, 0, 0);
+#define LED_UNDERGLOW_COUNT_PER_SIDE 11
 
-    // lshift
-    rgb_matrix_set_color(60, 0, 102, 0);
-    // lctrl
-    rgb_matrix_set_color(74, 178, 149, 0);
-    // lgui
-    rgb_matrix_set_color(75, 178, 0, 0);
-    // lalt
-    rgb_matrix_set_color(76, 255, 45, 0);
+#define LED_INDEX_ESC 0
+#define LED_INDEX_F12 12
+#define LED_INDEX_DEL 13
+#define LED_INDEX_1 15
+#define LED_INDEX_3 17
+#define LED_INDEX_TAB 29
+#define LED_INDEX_R 33
+#define LED_INDEX_OPENING_BRACKET 40
+#define LED_INDEX_BACKSLASH 42
+#define LED_INDEX_CAPS 44
+#define LED_INDEX_A 45
+#define LED_INDEX_S 46
+#define LED_INDEX_D 47
+#define LED_INDEX_F 48
+#define LED_INDEX_G 49
+#define LED_INDEX_H 50
+#define LED_INDEX_J 51
+#define LED_INDEX_K 52
+#define LED_INDEX_L 53
+#define LED_INDEX_SEMICOLON 54
+#define LED_INDEX_SINGLE_QUOTE 55
+#define LED_INDEX_ENTER 57
+#define LED_INDEX_LSHIFT 59
+#define LED_INDEX_X 62
+#define LED_INDEX_DOT 69
+#define LED_INDEX_RSHIFT 71
+#define LED_INDEX_LCONTROL 74
+#define LED_INDEX_LGUI 75
+#define LED_INDEX_LALT 76
+#define LED_INDEX_SPACE 77
+#define LED_INDEX_RALT 78
+#define LED_INDEX_FN 79
+#define LED_INDEX_RCONTROL 80
+#define LED_INDEX_ARROW_LEFT 81
+#define LED_INDEX_ARROW_RIGHT 83
 
-    // rshift
-    rgb_matrix_set_color(71, 0, 102, 0);
-    // ralt
-    rgb_matrix_set_color(78, 0, 24, 179);
-    // fn
-    rgb_matrix_set_color(79, 66, 20, 204);
-    // rctrl
-    rgb_matrix_set_color(80, 178, 149, 0);
+const hsv_t BASE_WHITE = {0, 0, 113};
+const hsv_t BASE_BLUE = {148, 179, 60};
+const hsv_t BASE_CYAN = {88, 113, 230};
 
-    // tab
-    rgb_matrix_set_color(29, 66, 20, 204);
-    // caps
-    rgb_matrix_set_color(44, 0, 24, 179);
+const hsv_t ACCENT_RED = {0, 255, 178};
+const hsv_t ACCENT_ORANGE = {7, 255, 255};
+const hsv_t ACCENT_YELLOW = {33, 255, 180};
+const hsv_t ACCENT_GREEN = {85, 255, 102};
+const hsv_t ACCENT_BLUE = {164, 255, 179};
+const hsv_t ACCENT_PURPLE = {180, 230, 204};
 
-    // [
-    rgb_matrix_set_color(40, 66, 20, 204);
-    // '
-    rgb_matrix_set_color(55, 0, 24, 179);
+void set_led_color(int index, hsv_t hsv) {
+    if (hsv.v > RGB_MATRIX_MAXIMUM_BRIGHTNESS) {
+        hsv.v = RGB_MATRIX_MAXIMUM_BRIGHTNESS;
+    }
+    rgb_t rgb = hsv_to_rgb(hsv);
+    rgb_matrix_set_color(index, rgb.r, rgb.g, rgb.b);
 }
 
-void set_decor_color_rgb(uint8_t red, uint8_t green, uint8_t blue) {
-    // esc - f12
-    for (int i = 0; i < 14; i++) {
-        rgb_matrix_set_color(i , red, green, blue);
-    }
 
-    // ~
-    rgb_matrix_set_color(14 , red, green, blue);
-
-    // 4 - home
-    for (int i = 18; i < 29; i++) {
-        rgb_matrix_set_color(i , red, green, blue);
-    }
-
-    // t - ]
-    for (int i = 34; i < 42; i++) {
-        rgb_matrix_set_color(i , red, green, blue);
-    }
-
-    // pageup
-    rgb_matrix_set_color(43 , red, green, blue);
-
-    // d - '
-    for (int i = 47; i < 57; i++) {
-        rgb_matrix_set_color(i , red, green, blue);
-    }
-
-    // pagedown
-    rgb_matrix_set_color(58 , red, green, blue);
-
-    // c - ,
-    for (int i = 63; i < 69; i++) {
-        rgb_matrix_set_color(i , red, green, blue);
-    }
-
-    // up arrow
-    rgb_matrix_set_color(72 , red, green, blue);
-    // end
-    rgb_matrix_set_color(73 , red, green, blue);
-
-    // ralt - rctrl
-    for (int i = 78; i < 81; i++) {
-        rgb_matrix_set_color(i , red, green, blue);
+void set_base_rgb(void) {
+    for (uint8_t index = 0; index < MAX_LED_INDEX; index++) {
+        switch(index) {
+            case LED_INDEX_DEL:
+            case LED_INDEX_1 ... LED_INDEX_3:
+            case LED_INDEX_TAB ... LED_INDEX_R:
+            case LED_INDEX_BACKSLASH:
+            case LED_INDEX_CAPS ... LED_INDEX_S:
+            case LED_INDEX_ENTER:
+            case LED_INDEX_LSHIFT ... LED_INDEX_X:
+            case LED_INDEX_DOT ... LED_INDEX_RSHIFT:
+            case LED_INDEX_LCONTROL ... LED_INDEX_SPACE:
+            // case LED_INDEX_ARROW_LEFT ... LED_INDEX_ARROW_RIGHT:
+                set_led_color(index, BASE_WHITE);
+                break;
+            default:
+                set_led_color(index, BASE_BLUE);
+        }
     }
 }
 
-//TODO invert base coloring. more keys are decor than base. (or iterate keys to only color each once)
+void set_mods_rgb(void) {
+    for (uint8_t index = 0; index < MAX_LED_INDEX; index++) {
+        switch(index) {
+            case LED_INDEX_A:
+            case LED_INDEX_SEMICOLON:
+            case LED_INDEX_LGUI:
+                set_led_color(index, ACCENT_RED);
+                break;
+            case LED_INDEX_S:
+            case LED_INDEX_L:
+            case LED_INDEX_LALT:
+                set_led_color(index, ACCENT_ORANGE);
+                break;
+            case LED_INDEX_D:
+            case LED_INDEX_K:
+            case LED_INDEX_LCONTROL:
+            case LED_INDEX_RCONTROL:
+                set_led_color(index, ACCENT_YELLOW);
+                break;
+            case LED_INDEX_F:
+            case LED_INDEX_J:
+            case LED_INDEX_LSHIFT:
+            case LED_INDEX_RSHIFT:
+                set_led_color(index, ACCENT_GREEN);
+                break;
+            case LED_INDEX_G:
+            case LED_INDEX_CAPS:
+            case LED_INDEX_SINGLE_QUOTE:
+            case LED_INDEX_RALT:
+                set_led_color(index, ACCENT_BLUE);
+                break;
+            case LED_INDEX_H:
+            case LED_INDEX_TAB:
+            case LED_INDEX_OPENING_BRACKET:
+            case LED_INDEX_FN:
+                set_led_color(index, ACCENT_PURPLE);
+                break;
+            default:
+                set_led_color(index, BASE_WHITE);
+        }
+    }
+}
 
 // hsv hue 0-360 is mapped to 0-255
 // hue-value/360 * 255
 bool rgb_matrix_indicators_user() {
+     rgb_matrix_sethsv_noeeprom (0, 0, 0);
     // general key color
     if(layer_state_is(L_NOGUI)) {
-        rgb_matrix_sethsv_noeeprom (128, 230, 135);
+        hsv_t cyan = BASE_CYAN;
+        rgb_matrix_sethsv_noeeprom (cyan.h, cyan.s, cyan.v);
         return false;
-    } else {
-        rgb_matrix_sethsv_noeeprom (0, 0, 113);
     }
 
-    // accents
     if (layer_state_is(L_MODS)) {
-        set_home_row_mod_color();
+        set_mods_rgb();
         return false;
     }
 
     if (layer_state_is(L_BASE)) {
-        set_decor_color_rgb(6, 13, 20);
+        set_base_rgb();
         return false;
     }
 
